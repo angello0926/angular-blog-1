@@ -1,5 +1,5 @@
 # Readme
 
-Run `python -m SimpleHTTPServer` in iTerm
+Run `bower install` in iTerm
 
-Open `localhost:8000` in browser
+Open `localhost:3000` in browser
