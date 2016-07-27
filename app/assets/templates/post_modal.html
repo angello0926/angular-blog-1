@@ -3,7 +3,7 @@
   <h3 class="modal-title" ng-if="mode == 'edit'">Edit Post</h3>
 </div>
 <div class="modal-body">
-  <form class="form" ng-submit="create()" ng->
+  <form class="form" ng-submit="createOrUpdate()" ng->
     <div class="form-group">
       <input type="text" ng-model="post.title" class="form-control" placeholder="title">
     </div>
@@ -14,7 +14,7 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" type="button" ng-click="create()" ng-if="mode == 'create'">Create</button>
-  <button class="btn btn-primary" type="button" ng-click="create()" ng-if="mode == 'edit'">Edit</button>
+  <button class="btn btn-primary" type="button" ng-click="createOrUpdate()" ng-if="mode == 'create'">Create</button>
+  <button class="btn btn-primary" type="button" ng-click="createOrUpdate()" ng-if="mode == 'edit'">Edit</button>
   <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 </div>

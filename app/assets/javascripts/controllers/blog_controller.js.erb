@@ -1,7 +1,15 @@
-app.controller('BlogCtrl', ['$scope', '$uibModal', function($scope, $uibModal){
-  $scope.posts = [
-    {title: "Everything is Awesome", content: "Very very true"}
-  ];
+app.controller('BlogCtrl', ['$scope', '$uibModal', '$http', function($scope, $uibModal, $http){
+  $scope.posts = [];
+
+  $scope.getPosts = function () {
+    $http({
+      url: 'http://localhost:3000/posts.json',
+      method: 'GET'
+    }).then(function(resp){
+      console.log(resp);
+      $scope.posts = resp.data;
+    })
+  };
 
   $scope.newPost = function () {
     $uibModal.open({
@@ -14,10 +22,7 @@ app.controller('BlogCtrl', ['$scope', '$uibModal', function($scope, $uibModal){
         }
       }
     }).result.then(function(newPost){
-      // success
       $scope.posts.push(newPost);
-    }, function () {
-      // reject
     });
   };
 
@@ -37,6 +42,13 @@ app.controller('BlogCtrl', ['$scope', '$uibModal', function($scope, $uibModal){
   };
 
   $scope.deletePost = function (index) {
-    $scope.posts.splice(index, 1);
+    $http({
+      url: 'http://localhost:3000/posts/' + $scope.posts[index].id + '.json',
+      method: 'DELETE'
+    }).then(function(resp){
+      $scope.posts.splice(index, 1);
+    })
   };
+
+  $scope.getPosts();
 }]);
