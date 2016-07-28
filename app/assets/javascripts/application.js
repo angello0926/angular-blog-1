@@ -12,7 +12,9 @@
 //
 //= require angular/angular
 //= require angular-animate/angular-animate
+//= require angular-resource/angular-resource
 //= require angular-bootstrap/ui-bootstrap-tpls
 //= require jquery/dist/jquery
 //= require bootstrap/dist/js/bootstrap
+//= require noty/js/noty/packaged/jquery.noty.packaged
 //= require_tree .

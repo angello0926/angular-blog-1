@@ -1,14 +1,26 @@
-app.controller('BlogCtrl', ['$scope', '$uibModal', '$http', function($scope, $uibModal, $http){
+app.controller('BlogCtrl', ['$scope', '$uibModal', '$http', 'NotyFactory', 'PostFactory', '$resource', function($scope, $uibModal, $http, NotyFactory, PostFactory, $resource){
+
+  var API = PostFactory.API;
+
   $scope.posts = [];
 
+  // assume this is inside error function
+  // NotyFactory.error('Password is too short');
+
   $scope.getPosts = function () {
-    $http({
-      url: 'http://localhost:3000/posts.json',
-      method: 'GET'
-    }).then(function(resp){
-      console.log(resp);
-      $scope.posts = resp.data;
-    })
+    // $http({
+    //   url: 'http://localhost:3000/posts.json',
+    //   method: 'GET'
+    // }).then(function(resp){
+    //   console.log(resp);
+    //   $scope.posts = resp.data;
+    //   PostFactory.posts = resp.data;
+    // })
+    API.query(function(posts){
+      console.log(posts)
+      $scope.posts = posts;
+      PostFactory.posts = posts;
+    });
   };
 
   $scope.newPost = function () {
@@ -23,6 +35,8 @@ app.controller('BlogCtrl', ['$scope', '$uibModal', '$http', function($scope, $ui
       }
     }).result.then(function(newPost){
       $scope.posts.push(newPost);
+      console.log($scope.posts);
+      console.log(PostFactory.posts);
     });
   };
 
@@ -42,10 +56,13 @@ app.controller('BlogCtrl', ['$scope', '$uibModal', '$http', function($scope, $ui
   };
 
   $scope.deletePost = function (index) {
-    $http({
-      url: 'http://localhost:3000/posts/' + $scope.posts[index].id + '.json',
-      method: 'DELETE'
-    }).then(function(resp){
+    // $http({
+    //   url: 'http://localhost:3000/posts/' + $scope.posts[index].id + '.json',
+    //   method: 'DELETE'
+    // }).then(function(resp){
+    //   $scope.posts.splice(index, 1);
+    // })
+    API.delete({id: $scope.posts[index].id}, function(resp){
       $scope.posts.splice(index, 1);
     })
   };
