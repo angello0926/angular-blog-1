@@ -12,6 +12,7 @@
 //
 //= require angular/angular
 //= require angular-animate/angular-animate
+//= require angular-ui-router/release/angular-ui-router
 //= require angular-bootstrap/ui-bootstrap-tpls
 //= require jquery/dist/jquery
 //= require bootstrap/dist/js/bootstrap

@@ -6,9 +6,13 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body ng-controller="BlogCtrl">
+<body>
 
-<%= yield %>
+<nav-bar></nav-bar>
+
+<div ui-view>
+  <%= yield %>
+</div>
 
 </body>
 </html>

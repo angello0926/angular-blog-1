@@ -1,10 +1,14 @@
-app.controller('BlogCtrl', ['$scope', '$uibModal', '$http', function($scope, $uibModal, $http){
+app.controller('BlogCtrl', ['$scope', '$uibModal', '$http', '$stateParams', function($scope, $uibModal, $http, $stateParams){
+
+  console.log($stateParams);
+
   $scope.posts = [];
 
   $scope.getPosts = function () {
     $http({
       url: 'http://localhost:3000/posts.json',
-      method: 'GET'
+      method: 'GET',
+      params:  $stateParams
     }).then(function(resp){
       console.log(resp);
       $scope.posts = resp.data;
